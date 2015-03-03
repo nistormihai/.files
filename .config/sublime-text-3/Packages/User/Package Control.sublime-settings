@@ -1,0 +1,14 @@
+{
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"GitDiffHelper",
+		"JSHint",
+		"Package Control",
+		"SublimeLinter",
+		"SublimeLinter-jscs",
+		"Sublimerge Pro"
+	]
+}

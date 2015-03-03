@@ -1,0 +1,12 @@
+{
+	"color_scheme": "Packages/User/Zenburnesque (SL).tmTheme",
+	"default_line_ending": "unix",
+	"detect_indentation": false,
+	"font_size": 17,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"tab_size": 4,
+	"translate_tabs_to_spaces": true
+}
