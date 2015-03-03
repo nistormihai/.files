@@ -15,7 +15,7 @@ sudo echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
 wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
 
 sudo apt-get update
-sudo apt-get install git git-cola google-chrome-stable skype hipchat nodejs sublime-text-installer mc docker.io python-virtualenv mongodb elasticsearch redis-server python3-pip
+sudo apt-get install git git-cola google-chrome-stable skype nodejs sublime-text-installer mongodb elasticsearch redis-server
 
 
 # Configure Elasticsearch to automatically start during bootup :
@@ -23,13 +23,13 @@ sudo update-rc.d elasticsearch defaults 95 10
 
 
 #docker ubuntu 14.10
-sudo addgroup mihai docker
-sudo su - mihai
-sudo service docker restart 
+#sudo addgroup mihai docker
+#sudo su - mihai
+#sudo service docker restart 
 
 
 # npm 
-sudo npm install -g bower grunt-cli
+#sudo npm install -g bower grunt-cli
 
 
-sudo apt-get install libxml2 libxslt1.1 libxml2-dev libxslt1-dev python-libxml2 python-libxslt1 python-dev python-setuptools
+#sudo apt-get install libxml2 libxslt1.1 libxml2-dev libxslt1-dev python-libxml2 python-libxslt1 python-dev python-setuptools
