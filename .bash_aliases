@@ -6,6 +6,7 @@ re() {
 
 alias path='echo -e ${PATH//:/\\n}'
 alias cd..='cdx ..'
+
 cdx() {
     LIVEBLOG_PATH="liveblog"
     case $1 in
@@ -26,7 +27,7 @@ cdx() {
                 cd ./app/scripts/bower_components/superdesk/
             fi
         ;;
-        mocks)   cd $HOME/Documents/mocks/ ;;        
+        mocks)   cd $HOME/Sourcefabric/mocks/ ;;        
         *)    cd $1 ;;
     esac
 }
@@ -47,6 +48,26 @@ build() {
     fi    
 }
 
+cls() {
+    case $1 in
+        lb)
+            curl -XDELETE localhost:9200/liveblog
+            mongo liveblog --eval "db.dropDatabase()"
+            ;;
+        *)
+            clear
+            ;;
+    esac
+}
+
+adg() {
+   case $1 in
+        *)
+            python3 manage.py users:create -u admin -p admin -e "admin@example.com" --admin=true
+            ;;
+    esac
+}
+
 serv() {
     if [ $# -gt 0 ]; then
         cdx $1
@@ -56,9 +77,45 @@ serv() {
         grunt server --server=https://master.sd-test.sourcefabric.org/api --ws=ws://master.sd-test.sourcefabric.org/ws
     fi
 
-    if [[ $CURRENT == *"liveblog/client" ]] ; then
-        grunt server --server=https://liveblog.sd-test.sourcefabric.org/api --ws=ws://liveblog.sd-test.sourcefabric.org/ws
+    if echo $CURRENT | grep -Eq 'liveblog([-a-zA-Z\_])*/client'; then
+        if ! type grunt > /dev/null; then
+            sudo npm install -g grunt-cli
+        fi
+        if [ ! -d "node_modules" ] ; then
+            npm install
+        fi
+        if [ ! -d "app/scripts/bower_components" ] ; then
+            bower install
+        fi
+        grunt server --server=http://localhost:5000/api
     fi
+
+    if echo $CURRENT | grep -Eq 'liveblog([-a-zA-Z\_])*/server'; then
+        cls lb
+        if [ ! -d "env" ]; then
+            virtualenv -p python3 env
+            . env/bin/activate
+            pip install -r requirements.txt
+        else
+            echo "ACTIVATE"
+            . env/bin/activate
+        fi
+        adg lb
+        honcho start
+    fi
+    if [[ $CURRENT == *"liveblog" ]] ; then
+        cd server
+        serv > ../server.log 2>&1 &
+        SEVER_PROCESS=$!
+        cd ../client
+        serv > ../client.log 2>&1 &
+        CLIENT_PROCESS=$!
+        #kill $SEVER_PROCESS
+        #kill $CLIENT_PROCESS
+        cd ..
+
+    fi
+    
     if [ -f "server.js" ] ; then
         nodejs server.js
     fi
@@ -163,4 +220,4 @@ update_lb() {
     git fetch plugin-liveblog-embed-server
     git subtree pull --prefix=plugins/embed plugin-liveblog-embed-server master --squash
     git push
-} 
+}

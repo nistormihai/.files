@@ -10,9 +10,11 @@ sudo add-apt-repository -y "deb http://packages.elasticsearch.org/elasticsearch/
 
 sudo sh -c "echo 'deb http://archive.canonical.com/ubuntu/ trusty partner' >> /etc/apt/sources.list.d/canonical_partner.list"
 
-sudo echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
+sudo su
+echo "deb http://downloads.hipchat.com/linux/apt stable main" > \
   /etc/apt/sources.list.d/atlassian-hipchat.list
 wget -O - https://www.hipchat.com/keys/hipchat-linux.key | apt-key add -
+exit
 
 sudo apt-get update
 sudo apt-get install doublecmd-qt git git-cola google-chrome-stable skype nodejs sublime-text-installer mongodb elasticsearch redis-server
@@ -29,7 +31,7 @@ sudo update-rc.d elasticsearch defaults 95 10
 
 
 # npm 
-#sudo npm install -g bower grunt-cli
+sudo npm install -g bower grunt-cli jscs jshint
 
 
 #sudo apt-get install libxml2 libxslt1.1 libxml2-dev libxslt1-dev python-libxml2 python-libxslt1 python-dev python-setuptools
