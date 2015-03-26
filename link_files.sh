@@ -5,14 +5,14 @@ if [ -f "${HOME}/.gitconfig" ]; then
 fi
 ln -s ${DIR}/.gitconfig ${HOME}/.gitconfig
 
-if [ -f "${DIR}/.bash_aliases ${HOME}/.bash_aliases" ]; then
-    rm ${DIR}/.bash_aliases ${HOME}/.bash_aliases
+if [ -f "${HOME}/.bash_aliases" ]; then
+    rm ${HOME}/.bash_aliases
 fi
 ln -s ${DIR}/.bash_aliases ${HOME}/.bash_aliases
 
 mkdir -p ${HOME}/.config/doublecmd
-if [ -f "${DIR}/.config/doublecmd/doublecmd.xml ${HOME}/.config/doublecmd/doublecmd.xml" ]; then
-    rm -s ${DIR}/.config/doublecmd/doublecmd.xml ${HOME}/.config/doublecmd/doublecmd.xml
+if [ -f "${HOME}/.config/doublecmd/doublecmd.xml" ]; then
+    rm ${HOME}/.config/doublecmd/doublecmd.xml
 fi
 ln -s ${DIR}/.config/doublecmd/doublecmd.xml ${HOME}/.config/doublecmd/doublecmd.xml
 IFS=$'\n'

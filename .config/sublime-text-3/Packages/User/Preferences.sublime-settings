@@ -2,7 +2,7 @@
 	"color_scheme": "Packages/User/Zenburnesque (SL).tmTheme",
 	"default_line_ending": "unix",
 	"detect_indentation": false,
-	"font_size": 17,
+	"font_size": 15,
 	"ignored_packages":
 	[
 		"Vintage"
