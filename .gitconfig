@@ -34,6 +34,7 @@
     undo = reset --soft HEAD^
     clear = !git clean -f & git checkout .
 
+    mb = "!f() { git checkout -b ${1} ${2-devel}; git push -u origin ${1}; }; f"
     b = "!f() { git fetch ${3-superdesk}; git checkout -b ${1} ${3-superdesk}/${2-master}; git push -u origin ${1}; }; f"
     db = "!f() { git branch -D ${1}; git push origin :${1}; }; f"
     lb = "!f() { git fetch liveblog; git checkout -b ${1} liveblog/${2-master}; git push -u origin ${1}; }; f"

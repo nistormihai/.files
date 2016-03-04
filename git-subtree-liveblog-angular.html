@@ -1,0 +1,9 @@
+git remote add lb-theme-classic git@github.com:liveblog/lb-theme-classic.git
+git fetch lb-theme-classic
+git subtree pull --prefix=server/liveblog/themes/themes_assets/classic lb-theme-classic master --squash
+
+
+
+git remote add lb-theme-angular git@github.com:liveblog/lb-theme-angular.git
+git fetch lb-theme-angular
+git subtree pull --prefix=server/liveblog/themes/themes_assets/angular lb-theme-angular master --squash
