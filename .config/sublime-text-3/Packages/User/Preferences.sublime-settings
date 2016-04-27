@@ -1,12 +1,22 @@
 {
-	"color_scheme": "Packages/User/Zenburnesque (SL).tmTheme",
+	"color_scheme": "Packages/User/Zenburnesque (SL) (Flake8Lint).tmTheme",
 	"default_line_ending": "unix",
 	"detect_indentation": false,
-	"font_size": 13,
+	"font_size": 14,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
+    "rulers":
+    [
+        // set text rulers so I can judge line length for pep8
+        72, // docstrings
+        79, // optimum code line length
+        100  // maximum allowable length
+    ],
 	"tab_size": 4,
-	"translate_tabs_to_spaces": true
+    "word_wrap": false, // I hate auto-wrapped text.
+    "wrap_width": 79, // This is used by a plugin elsewhere
+	"translate_tabs_to_spaces": true,
+    "use_tab_stops": true
 }

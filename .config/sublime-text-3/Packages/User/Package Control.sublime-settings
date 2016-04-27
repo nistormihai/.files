@@ -10,8 +10,12 @@
 		"GitDiffHelper",
 		"JSHint",
 		"Package Control",
+		"Python 3",
+		"Python Breakpoints",
+		"Python Flake8 Lint",
 		"SublimeLinter",
 		"SublimeLinter-jscs",
-		"Sublimerge Pro"
+		"Sublimerge Pro",
+		"TypeScript"
 	]
 }

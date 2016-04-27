@@ -72,7 +72,6 @@ serv() {
     fi
 
     if echo $CURRENT | grep -Eq 'liveblog([-a-zA-Z\_0-9])*/server'; then
-        export SUPERDESK_TESTING=true
         if [ ! -d "env" ]; then
             virtualenv -p python3 env
             . env/bin/activate
@@ -80,12 +79,36 @@ serv() {
         else
             . env/bin/activate
         fi
-        if [ "$1" == "cls" ]; then
-        printf "\nClear databases!\n"
-            cls lb
-            adg lb
-        fi
-        honcho start
+
+        case $1 in
+            cls)
+                printf "\nClear databases!\n"
+                cls lb
+                adg lb
+                ;;
+            prod)
+                printf "\nPRODUCTION!\n"
+                export SUPERDESK_TESTING=false
+                export LIVEBLOG_DEBUG=false
+                export S3_THEMES_PREFIX=lb3eu
+                export AMAZON_CONTAINER_NAME=lb3eu
+                export AMAZON_ACCESS_KEY_ID=<AMAZON_ACCESS_KEY_ID>
+                export AMAZON_SECRET_ACCESS_KEY=<AMAZON_SECRET_ACCESS_KEY>
+                export AMAZON_REGION=eu-west-1
+                export AMAZON_SERVE_DIRECT_LINKS=True
+                honcho start
+                ;;
+            ws)
+                printf "\nWebSockets\n"
+                python ws.py
+                ;;
+            *)
+                export SUPERDESK_TESTING=true
+                export LIVEBLOG_DEBUG=true
+                honcho start                
+                ;;
+        esac
+
     fi
     
     if [ -f "server.js" ] ; then
